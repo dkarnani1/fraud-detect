@@ -36,9 +36,10 @@ def translate_query():
     # Assuming the chat function returns SQL query string
     sql_query = genai.chat(query)  # Use your chat function to convert English to SQL
     
-    conn = sqlite3.connect('insurance_fraud.db')
-    df = pd.read_sql(sql_query, conn)  # Run the SQL query
-    conn.close()
+    #conn = sqlite3.connect('insurance_fraud.db')
+    #df = pd.read_sql(sql_query, conn)  # Run the SQL query
+    df = pd.DataFrame(sql_query)
+    #conn.close()
     
     return jsonify({"data": df.to_dict(orient='records')})
 
