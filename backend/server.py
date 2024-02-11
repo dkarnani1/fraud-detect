@@ -1,23 +1,16 @@
-# Filename - server.py
-
-# Import flask
 from flask import Flask
+import request
+import jsonify
 import backend
 
-# Initializing flask app
 app = Flask(__name__)
 
-
-# Route for seeing a data
-@app.route('/data')
+@app.route('/data', methods=['POST'])
 def predict():
+    input_data = request.json['data']  # Assuming data is sent in JSON under the key 'data'
+    df = backend.input_to_df(input_data)  # Convert input to DataFrame
+    prediction = backend.predict(df)  # Make prediction using the backend function
+    return jsonify({"prediction": prediction.tolist()})  # Assuming prediction is numpy array
 
-    # Returning an api for showing in  reactjs
-    return {
-        "prediction":"0.4",
-        }
- 
-     
-# Running app
 if __name__ == '__main__':
     app.run(debug=True)

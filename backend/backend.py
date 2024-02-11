@@ -16,7 +16,11 @@ def main():
 
 # Convert Input to DataFrame
 def input_to_df(input):
-    pass
+    # Assuming input is a list of lists where each sub-list is a row
+    cols = ['months_as_customer', 'age', 'policy_annual_premium', 'incident_severity', 'total_claim_amount', 'days_between_bind_incident']
+    df = pd.DataFrame(input, columns=cols)
+    return df
+
 
 def predict(input_data):
     try:
