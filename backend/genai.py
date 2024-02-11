@@ -2,10 +2,11 @@ from langchain.chains import create_sql_query_chain
 from langchain_openai import ChatOpenAI
 from langchain_community.utilities import SQLDatabase
 from openai import OpenAI
-import os 
+import os
 
-OPENAI_API_KEY = "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"
-os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
+#OPENAI_API_KEY = 
+OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
+#os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
 
 
 
