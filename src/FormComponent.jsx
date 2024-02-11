@@ -113,10 +113,10 @@ const FormComponent = () => {
                 onChange={handleChange}
               >
                 <option value="">Select Severity</option>
-                <option value="Trivial Damage">Trivial Damage</option>
-                <option value="Minor Damage">Minor Damage</option>
-                <option value="Major Damage">Major Damage</option>
-                <option value="Total Loss">Total Loss</option>
+                <option value="3">Trivial Damage</option>
+                <option value="1">Minor Damage</option>
+                <option value="0">Major Damage</option>
+                <option value="2">Total Loss</option>
               </select>
               <div className="form-navigation">
                 <button type="button" onClick={prevStep}>Previous</button>
@@ -194,10 +194,30 @@ const FormComponent = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    // Logic to handle form submission
+    console.log(formData); // Assuming formData is an object containing your form data
+  
+    try {
+      const response = await fetch('http://127.0.0.1:5000/data', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          data: formData, // Make sure this matches the expected format of your backend
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+  
+      const result = await response.json();
+      console.log(result); // Process your response here
+    } catch (error) {
+      console.error("Failed to send form data:", error);
+    }
   };
 
   return (

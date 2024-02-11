@@ -18,16 +18,16 @@ def main():
 def input_to_df(input):
     # Assuming input is a list of lists where each sub-list is a row
     cols = ['months_as_customer', 'age', 'policy_annual_premium', 'incident_severity', 'total_claim_amount', 'days_between_bind_incident']
-    df = pd.DataFrame(input, columns=cols)
+    df = pd.DataFrame(input, columns=cols, index=[0])
     return df
 
 
 def predict(input_data):
     try:
-        model = pickle.load(open("model.pkl", "rb"))
+        model = pickle.load(open("backend\model.pkl", "rb"))
     except (OSError, IOError) as e:
         model = train()
-        with open('model.pkl', 'wb') as f:
+        with open('backend\model.pkl', 'wb') as f:
             pickle.dump(model, f)
     return model.predict(input_data)
 
