@@ -3,10 +3,12 @@ from langchain_openai import ChatOpenAI
 from langchain_community.utilities import SQLDatabase
 from openai import OpenAI
 import os
+from dotenv import load_dotenv
 
-#OPENAI_API_KEY = 
-OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
-#os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
+load_dotenv()
+OPENAI_API_KEY = os.getenv("SECRET_KEY")
+#OPENAI_API_KEY = os.environ["OPENAI_API_KEY"]
+os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
 
 
 
