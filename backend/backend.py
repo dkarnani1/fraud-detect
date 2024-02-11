@@ -3,9 +3,9 @@ import os
 
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import accuracy_score
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import accuracy_score
 
 def main():
     # Trains model if not already trained
@@ -31,25 +31,8 @@ def train():
     cols = ['months_as_customer',
             'age',
             'policy_annual_premium',
-            'umbrella_limit',
-            'insured_education_level',
-            'insured_occupation',
-            'insured_hobbies',
-            'insured_relationship',
-            'capital-gains',
-            'capital-loss',
-            'collision_type',
             'incident_severity',
-            'authorities_contacted',
-            'incident_state',
-            'incident_city',
-            'incident_location',
-            'incident_hour_of_the_day',
-            'witnesses',
             'total_claim_amount',
-            'injury_claim',
-            'property_claim',
-            'vehicle_claim',
             'days_between_bind_incident',
             'fraud_reported',
             ]
@@ -63,13 +46,8 @@ def train():
     num_df = X_train[['months_as_customer',
                       'age',
                       'policy_annual_premium',
-                      'capital-loss',
                       'incident_severity',
-                      'incident_hour_of_the_day',
                       'total_claim_amount',
-                      'injury_claim',
-                      'property_claim',
-                      'vehicle_claim',
                       'days_between_bind_incident',
                       ]]
 

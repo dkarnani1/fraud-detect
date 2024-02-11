@@ -14,8 +14,7 @@ def predict():
 
     # Returning an api for showing in  reactjs
     return {
-        "Name":"test", 
-        "Age":"1",
+        "prediction":"0.4",
         }
  
      
