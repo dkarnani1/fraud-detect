@@ -12,6 +12,7 @@ CORS(app)
 def predict():
     input_data = request.json['data']  # Assuming data is sent in JSON under the key 'data'
     df = backend.input_to_df(input_data)  # Convert input to DataFrame
+    df = df.iloc[:,[0,1,2,4,5,3]]
     prediction = backend.predict(df)  # Make prediction using the backend function
     json_response = jsonify({"prediction": prediction.tolist()})  # Assuming prediction is numpy array
 

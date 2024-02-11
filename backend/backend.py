@@ -21,13 +21,15 @@ def input_to_df(input):
 
 
 def predict(input_data):
-    try:
-        model = pickle.load(open("backend\\model.pkl", "rb"))
-    except (OSError, IOError) as e:
-        model = train()
-        with open('backend\\model.pkl', 'wb') as f:
-            pickle.dump(model, f)
-    return model.predict(input_data)
+    #try:
+    #    model = pickle.load(open("backend\\model.pkl", "rb"))
+    #except (OSError, IOError) as e:
+    #    model = train()
+    #    with open('backend\\model.pkl', 'wb') as f:
+    #        pickle.dump(model, f)
+    model = train()
+    pred = model.predict(input_data)
+    return pred
 
 def train():
     cols = ['months_as_customer',
@@ -76,8 +78,14 @@ def train():
     y_pred = dtc.predict(X_test)
 
     dtc_test_acc = accuracy_score(y_test, y_pred)
-    print(f"Test accuracy of Decision Tree is : {dtc_test_acc}")
-    print(f"Confusion Matrix of Decision Tree is : \n{confusion_matrix(y_test, y_pred)}")
+    #print(f"Test accuracy of Decision Tree is : {dtc_test_acc}")
+    #print(f"Confusion Matrix of Decision Tree is : \n{confusion_matrix(y_test, y_pred)}")
+
+    #for i,row in enumerate(y_pred):
+    #    if row == 1:
+    #        print(df_test.iloc[[i]])
+    #print(dtc.predict(X_test.iloc[[286]]))
+    #print(dtc.predict(X_test.iloc[[297]]))
 
     return dtc
 

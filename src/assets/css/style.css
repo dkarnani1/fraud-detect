@@ -401,6 +401,7 @@ h6 {
 # Admin Section
 --------------------------------------------------------------*/
 .admin-container {
+  height: 100vh;
   padding: 20px;
   padding-top: 100px;
   background-color: #f8f9fa;
