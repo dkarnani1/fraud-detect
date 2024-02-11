@@ -20,7 +20,7 @@ def chat(query):
 
 
     
-    print(db.run(response))
+    return db.run(response)
 
 
 if __name__ == "__main__":
