@@ -75,6 +75,79 @@
   .form-page-exit-prev {
     animation: slideOut-prev 0.5s forwards;
   }
+/* Frog */
+  .frog-section {
+    text-align: center;
+    transition: transform 2s;
+  }
+
+  .frog-image.enter {
+    transition: transform 2s;
+    transform: translateX(0); /* Initial position */
+  }
+
+  .frog-image.side {
+    transform: translateX(-50%); /* Or any position you prefer */
+    position: absolute;
+    top: 20px; /* Adjust based on desired final position */
+    left: 20px;
+  }
+  
+  .frog-message-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Full viewport height */
+    text-align: center;
+    position: relative; /* Ensure the container has a positioning context */
+    animation: fade-out 2s forwards;
+  }
+  
+  .frog-image {
+    max-width: 1000px; /* Adjust size as needed */
+    margin-bottom: 20px;
+    animation: move-to-side 2s forwards; /* Keep the frog on the side */
+  }
+
+  .frog-message-container p {
+    animation: fade-out 2s forwards; /* Fade out the text */
+  }
+  
+  /* Adjust button colors to match theme better */
+  button[type="submit"], button[type="button"] {
+    background-color: #0c2e8a; /* Adjusted to match theme */
+    color: white;
+  }
+  
+  button:hover {
+    background-color: #50d8af; /* Lighter shade for hover effect */
+  }
+
+  .btn-show-form {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #4CAF50; /* Or any color that fits your theme */
+    color: white;
+  }
+  
+  /* Animations */
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+    /* Keyframes for moving the frog to the side and fading out the text */
+  @keyframes move-to-side {
+    to { transform: translateX(calc(-10vw - 70% - 20px)); } /* Move frog to the edge, adjust as needed */
+  }
+
+  @keyframes fade-out {
+    to { opacity: 0; visibility: hidden; }
+  }
   
   /* Keyframes for slideIn and slideOut animations */
   @keyframes slideIn {

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef  } from 'react';
 import './FormComponent.css';
+import frogSvg from './assets/img/frog.svg';
 
 function usePrevious(value) {
   const ref = useRef();
@@ -13,7 +14,7 @@ function usePrevious(value) {
 
 const FormComponent = () => {
   const [animationReady, setAnimationReady] = useState(true);
-  const [currentStep, setCurrentStep] = useState(1);
+  const [currentStep, setCurrentStep] = useState(0);
   const lastCurrentStep = usePrevious(currentStep);
   const [formData, setFormData] = useState({
     months_as_customer: '',
@@ -24,17 +25,34 @@ const FormComponent = () => {
     days_between_bind_incident: ''
   });
 
+  // Function to move to the form
+  const showForm = () => {
+    setCurrentStep(1); // Transition to the form
+  };
+
   const [animation, setAnimation] = useState('form-page-enter');
   const totalSteps = 6;
 
   useEffect(() => {
-    if(lastCurrentStep < currentStep){
-      setAnimation('form-page-enter');
-    } else {
-      console.log('show previous')
-      setAnimation('form-page-exit-prev');
+    // Handle the transition from Marvin to the form
+    if (currentStep === 1 && lastCurrentStep === 0) {
+      setAnimation('form-page-enter'); // Animation for the form appearing after Marvin
     }
-  }, [currentStep]);
+    // Handle form navigation animations (excluding the initial step)
+    else if (currentStep > 1) {
+      if (lastCurrentStep < currentStep) {
+        setAnimation('form-page-enter');
+      } else if (lastCurrentStep > currentStep) {
+        console.log('show previous');
+        setAnimation('form-page-exit-prev');
+      }
+    }
+    // Optionally, handle Marvin's introduction animation if needed
+    // This could be a fade-in animation when the component first mounts
+    // if (currentStep === 0) {
+    //   setAnimation('marvin-intro');
+    // }
+  }, [currentStep, lastCurrentStep]);
 
   const handleAnimationEnd = () => {
     setAnimation('');
@@ -222,11 +240,19 @@ const FormComponent = () => {
 
   return (
     <div className="form-container">
-      <form onSubmit={handleSubmit}>
-        <div className="form-page">
-          {renderFormStep()}
-        </div>
-      </form>
+      <div className="frog-section">
+        <img src={frogSvg} alt="Marvin, the Frogressive Frog" className={`frog-image ${currentStep === 0 ? 'enter' : 'side'}`} />
+        {currentStep === 0 && <p>Marvin, the Frogressive Frog is here to help you file your claim</p>}
+        {/* Button to manually transition from Marvin to the form */}
+        {currentStep === 0 && <button onClick={showForm} className="btn-show-form">Start Filing Claim</button>}
+      </div>
+      {currentStep >= 1 && (
+        <form onSubmit={handleSubmit}>
+          <div className="form-page">
+            {renderFormStep()}
+          </div>
+        </form>
+      )}
     </div>
   );
 };
