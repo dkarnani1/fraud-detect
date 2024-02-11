@@ -5,14 +5,12 @@ import pandas as pd
 from sklearn.preprocessing import StandardScaler
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import GridSearchCV
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, confusion_matrix
 
 def main():
-    # Trains model if not already trained
-    if not os.path.isfile('model.pkl'):
-        model = train()
-        with open('model.pkl', 'wb') as f:
-            pickle.dump(model, f)
+    model = train()
+    #with open('model.pkl', 'wb') as f:
+        #pickle.dump(model, f)
 
 # Convert Input to DataFrame
 def input_to_df(input):
@@ -24,10 +22,10 @@ def input_to_df(input):
 
 def predict(input_data):
     try:
-        model = pickle.load(open("backend\model.pkl", "rb"))
+        model = pickle.load(open("backend\\model.pkl", "rb"))
     except (OSError, IOError) as e:
         model = train()
-        with open('backend\model.pkl', 'wb') as f:
+        with open('backend\\model.pkl', 'wb') as f:
             pickle.dump(model, f)
     return model.predict(input_data)
 
@@ -40,17 +38,16 @@ def train():
             'days_between_bind_incident',
             'fraud_reported',
             ]
-    df_train = pd.read_csv("./data_train_1.csv")[cols]
+    df_train = pd.read_csv("backend\\data_train_1.csv")[cols]
     X_train = df_train.drop('fraud_reported', axis=1)
     y_train = df_train['fraud_reported']
-    df_test = pd.read_csv("./data_test_1.csv")[cols]
+    df_test = pd.read_csv("backend\\data_test_1.csv")[cols]
     X_test = df_test.drop('fraud_reported', axis=1)
     y_test = df_test['fraud_reported']
 
     num_df = X_train[['months_as_customer',
                       'age',
                       'policy_annual_premium',
-                      'incident_severity',
                       'total_claim_amount',
                       'days_between_bind_incident',
                       ]]
@@ -80,6 +77,7 @@ def train():
 
     dtc_test_acc = accuracy_score(y_test, y_pred)
     print(f"Test accuracy of Decision Tree is : {dtc_test_acc}")
+    print(f"Confusion Matrix of Decision Tree is : \n{confusion_matrix(y_test, y_pred)}")
 
     return dtc
 

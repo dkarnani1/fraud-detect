@@ -398,6 +398,84 @@ h6 {
 }
 
 /*--------------------------------------------------------------
+# Admin Section
+--------------------------------------------------------------*/
+.admin-container {
+  padding: 20px;
+  padding-top: 100px;
+  background-color: #f8f9fa;
+  color: #0c2e8a;
+}
+
+.query-input-container {
+  margin-bottom: 20px;
+}
+
+.query-input {
+  font-family: "Raleway", sans-serif;
+  padding: 10px;
+  margin-right: 10px;
+  border: 2px solid #0c2e8a;
+  border-radius: 2px;
+}
+
+.btn-query, .btn-update {
+  font-family: "Raleway", sans-serif;
+  padding: 10px 32px;
+  border-radius: 2px;
+  border: 2px solid #0c2e8a;
+  background: #0c2e8a;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-query:hover, .btn-update:hover {
+  background: #fff;
+  color: #0c2e8a;
+}
+
+.admin-container .btn-update {
+  font-family: "Raleway", sans-serif;
+  background: #0c2e8a;
+  border: 2px solid #0c2e8a;
+  color: #fff;
+  padding: 10px 32px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.admin-container .btn-update:hover {
+  background: #fff;
+  color: #0c2e8a;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  background-color: #0c2e8a;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+
+/*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
 #hero {
