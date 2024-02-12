@@ -31,7 +31,7 @@ const FormComponent = () => {
   };
 
   const [animation, setAnimation] = useState('form-page-enter');
-  const totalSteps = 6;
+  const totalSteps = 7;
 
   useEffect(() => {
     // Handle the transition from Marvin to the form
@@ -67,6 +67,20 @@ const FormComponent = () => {
         return (
           <div className={formPageClass} onAnimationEnd={handleAnimationEnd}>
             <div className="form-page">
+              <label htmlFor="full-name">Full Name</label>
+              <input
+                type="text"
+              />
+              <div className="form-navigation">
+                <button type="button" onClick={nextStep}>Next</button>
+              </div>
+            </div>
+          </div>
+        );
+      case 2:
+        return (
+          <div className={formPageClass} onAnimationEnd={handleAnimationEnd}>
+            <div className="form-page">
               <label htmlFor="months_as_customer">Months as Customer:</label>
               <input
                 type="number"
@@ -76,12 +90,13 @@ const FormComponent = () => {
                 onChange={handleChange}
               />
               <div className="form-navigation">
+                <button type="button" onClick={prevStep}>Previous</button>
                 <button type="button" onClick={nextStep}>Next</button>
               </div>
             </div>
           </div>
         );
-      case 2:
+      case 3:
         return (
           <div className={formPageClass} onAnimationEnd={handleAnimationEnd}>
             <div className="form-page">
@@ -100,7 +115,7 @@ const FormComponent = () => {
             </div>
           </div>
         );
-      case 3:
+      case 4:
         return (
           <div className={formPageClass} onAnimationEnd={handleAnimationEnd}>
             <div className="form-page">
@@ -119,7 +134,7 @@ const FormComponent = () => {
             </div>
           </div>
         );
-      case 4:
+      case 5:
         return (
           <div className={formPageClass} onAnimationEnd={handleAnimationEnd}>
             <div className="form-page">
@@ -143,7 +158,7 @@ const FormComponent = () => {
             </div>
           </div>
         );
-      case 5:
+      case 6:
         return (
           <div className={formPageClass} onAnimationEnd={handleAnimationEnd}>
             <div className="form-page">
@@ -162,7 +177,7 @@ const FormComponent = () => {
             </div>
           </div>
         );
-      case 6:
+      case 7:
         return (
           <div className={formPageClass} onAnimationEnd={handleAnimationEnd}>
             <div className="form-page">
