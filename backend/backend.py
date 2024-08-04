@@ -31,6 +31,7 @@ def predict(input_data):
     pred = model.predict(input_data)
     return pred
 
+# Training Function
 def train():
     cols = ['months_as_customer',
             'age',
